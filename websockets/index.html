@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            WebSockets in HTML5
+        </title>
+    </head>
+    <body>
+        <script>
+            window.onload = function(){
+                var ws = new WebSocket('ws://localhost:8000', 'echo-protocol');
+                ws.onopen = function(){
+                    console.log('Web socket connection opened')
+                }
+
+                ws.onmessage = function(data){
+                    console.log(data)
+                    ws.send(JSON.stringify({status: 'ok'}))
+                }
+            }
+        </script>
+    </body>
+</html>
